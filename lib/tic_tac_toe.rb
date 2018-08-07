@@ -60,4 +60,38 @@ class TicTacToe
         puts "That was an invalid move. Please enter 1-9:"
       end
   end
+
+  def turn_count
+    counter = 0
+    @board.each do |space|
+      if space == "X" || space == "O"
+        counter += 1
+      end 
+    end 
+    counter 
+  end 
+
+  def current_player
+    if turn_count.even?
+      current_player = "X"
+    else 
+      current_player = "O"
+    end 
+    current_player
+  end 
+
+  def won?
+    WIN_COMBINATIONS.each do |win_combo|
+      win_index_1 = win_combo[0]
+      win_index_2 = win_combo[1]
+      win_index_3 = win_combo[2]
+      position_1 = @board[win_index_1]
+      position_2 = @board[win_index_2]
+      position_3 = @board[win_index_3]
+      if position_1 == position_2 && position_2 == position_3 && position_taken?(win_index_1)
+        return win_combo
+      end 
+    end 
+    false
+  end 
 end
