@@ -97,32 +97,42 @@ class TicTacToe
 
   def full?
     if @board.include?(' ') || @board.include?('')
-      return false 
-    else 
-      return true 
-    end 
-  end 
+      return false
+    else
+      return true
+    end
+  end
 
-  def draw? 
+  def draw?
     if !won? && full?
-      return true 
-    else 
-      false 
-    end 
-  end 
+      return true
+    else
+      false
+    end
+  end
 
   def over?
     if won? || draw? || full?
-      return true 
-    else 
-      false 
-    end 
+      return true
+    else
+      false
+    end
   end
 
-  def winner 
-    if won? 
+  def winner
+    if won?
       index = won?[0]
       @board[index]
+    end
+  end
+
+  def play 
+    until over? 
+      turn 
     end 
-  end  
+    if won? 
+      puts "Congratulations #{winner(@board)}!"
+    else 
+      puts "Cat's Game!"
+    end 
 end
