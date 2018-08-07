@@ -66,19 +66,19 @@ class TicTacToe
     @board.each do |space|
       if space == "X" || space == "O"
         counter += 1
-      end 
-    end 
-    counter 
-  end 
+      end
+    end
+    counter
+  end
 
   def current_player
     if turn_count.even?
       current_player = "X"
-    else 
+    else
       current_player = "O"
-    end 
+    end
     current_player
-  end 
+  end
 
   def won?
     WIN_COMBINATIONS.each do |win_combo|
@@ -90,8 +90,39 @@ class TicTacToe
       position_3 = @board[win_index_3]
       if position_1 == position_2 && position_2 == position_3 && position_taken?(win_index_1)
         return win_combo
-      end 
-    end 
+      end
+    end
     false
+  end
+
+  def full?
+    if @board.include?(' ') || @board.include?('')
+      return false 
+    else 
+      return true 
+    end 
   end 
+
+  def draw? 
+    if !won? && full?
+      return true 
+    else 
+      false 
+    end 
+  end 
+
+  def over?
+    if won? || draw? || full?
+      return true 
+    else 
+      false 
+    end 
+  end
+
+  def winner 
+    if won? 
+      index = won?[0]
+      @board[index]
+    end 
+  end  
 end
